@@ -26,7 +26,6 @@ public class TransactionsControllerTest {
                 post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"amount\": 12.3,\"timestamp\": " + getTimestampsSecondsAgo(50) + "}"))
-                .andDo(print())
                 .andExpect(status().isCreated());
     }
 
@@ -36,7 +35,6 @@ public class TransactionsControllerTest {
                 post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"amount\": 12.3,\"timestamp\": " + getTimestampsSecondsAgo(70) + "}"))
-                .andDo(print())
                 .andExpect(status().isNoContent());
     }
 }
