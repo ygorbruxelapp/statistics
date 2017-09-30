@@ -8,11 +8,6 @@ public class Transaction {
     private double amount;
     private long timestamp;
 
-    public Transaction() {
-        amount = 0;
-        timestamp = 0;
-    }
-
     public boolean isExpired() {
         ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
         ZonedDateTime sixtySecondsAgo = utc.minusSeconds(60);
