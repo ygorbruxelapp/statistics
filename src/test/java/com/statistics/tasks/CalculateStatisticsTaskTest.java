@@ -12,8 +12,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.ContextConfiguration;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
@@ -37,7 +35,7 @@ public class CalculateStatisticsTaskTest {
         when(transactionRepository.findAll()).thenReturn(transactions);
 
         Statistics statistics = new Statistics(1, 2, 3, 4, 5);
-        when(statisticsCalculator.calculate(transactions, ZonedDateTime.now(ZoneOffset.UTC))).thenReturn(statistics);
+        when(statisticsCalculator.calculate(transactions)).thenReturn(statistics);
 
         CalculateStatisticsTask calculateStatisticsTask = new CalculateStatisticsTask(statisticsCalculator, transactionRepository, statisticsRepository);
         calculateStatisticsTask.updateStatistics();

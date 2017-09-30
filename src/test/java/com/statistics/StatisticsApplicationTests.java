@@ -22,5 +22,4 @@ public class StatisticsApplicationTests {
     public void contextLoads() {
         assertThat(transactionsController).isNotNull();
     }
-
 }

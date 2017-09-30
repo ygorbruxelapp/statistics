@@ -4,13 +4,12 @@ import com.statistics.domain.Statistics;
 import com.statistics.domain.Transaction;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 @Service
 public class StatisticsCalculator {
-    public Statistics calculate(List<Transaction> all, ZonedDateTime now) {
+    public Statistics calculate(List<Transaction> all) {
         DoubleSummaryStatistics summaryStatistics = all
                 .stream()
                 .mapToDouble(Transaction::getAmount)

@@ -6,8 +6,6 @@ import com.statistics.services.StatisticsCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
 import java.util.Arrays;
 
 import static com.statistics.factory.TransactionFactory.getCurrentTransactionWithAmount;
@@ -87,7 +85,6 @@ public class StatisticsCalculatorTest {
 
     private Statistics calculate(Transaction... transactions) {
         return statisticsCalculator.calculate(
-                Arrays.asList(transactions),
-                ZonedDateTime.now(ZoneOffset.UTC));
+                Arrays.asList(transactions));
     }
 }
