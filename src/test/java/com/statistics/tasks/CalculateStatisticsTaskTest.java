@@ -1,14 +1,16 @@
 package com.statistics.tasks;
 
 import com.statistics.domain.Statistics;
-import com.statistics.services.StatisticsCalculator;
 import com.statistics.domain.Transaction;
 import com.statistics.repositories.StatisticsRepository;
 import com.statistics.repositories.TransactionRepository;
+import com.statistics.services.StatisticsCalculator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
+@ContextConfiguration(classes = {TestConfiguration.class})
 public class CalculateStatisticsTaskTest {
 
     @Mock
