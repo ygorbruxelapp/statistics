@@ -31,7 +31,7 @@ public class CalculateStatisticsTaskTest {
         ArrayList<Transaction> transactions = new ArrayList<>();
         when(transactionRepository.findAll()).thenReturn(transactions);
 
-        Statistics statistics = new Statistics();
+        Statistics statistics = new Statistics(1, 2, 3, 4, 5);
         when(statisticsCalculator.calculate(transactions)).thenReturn(statistics);
 
         CalculateStatisticsTask calculateStatisticsTask = new CalculateStatisticsTask(statisticsCalculator, transactionRepository, statisticsRepository);

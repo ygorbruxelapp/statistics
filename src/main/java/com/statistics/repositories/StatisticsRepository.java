@@ -8,4 +8,8 @@ public class StatisticsRepository {
     public void set(Statistics statistics) {
         this.statistics = statistics;
     }
+
+    public Statistics get() {
+        return statistics;
+    }
 }

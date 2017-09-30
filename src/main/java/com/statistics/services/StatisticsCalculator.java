@@ -15,13 +15,11 @@ public class StatisticsCalculator {
                 .mapToDouble(Transaction::getAmount)
                 .summaryStatistics();
 
-        Statistics statistics = new Statistics();
-        statistics.setSum(summaryStatistics.getSum());
-        statistics.setAvg(summaryStatistics.getAverage());
-        statistics.setMax(summaryStatistics.getMax());
-        statistics.setMin(summaryStatistics.getMin());
-        statistics.setCount(summaryStatistics.getCount());
-
-        return statistics;
+        return new Statistics(
+                summaryStatistics.getSum(),
+                summaryStatistics.getAverage(),
+                summaryStatistics.getMax(),
+                summaryStatistics.getMin(),
+                summaryStatistics.getCount());
     }
 }
