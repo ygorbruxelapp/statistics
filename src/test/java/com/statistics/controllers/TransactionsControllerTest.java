@@ -29,4 +29,14 @@ public class TransactionsControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    public void addingExpiredTransactionsShouldReturnNoContentFromService() throws Exception {
+        this.mockMvc.perform(
+                post("/transactions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"amount\": 12.3,\"timestamp\": " + getTimestampsSecondsAgo(70) + "}"))
+                .andDo(print())
+                .andExpect(status().isNoContent());
+    }
 }

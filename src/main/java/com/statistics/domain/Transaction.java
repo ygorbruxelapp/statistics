@@ -23,4 +23,8 @@ public class Transaction {
 
         return timestamp < (sixtySecondsAgo.toEpochSecond() * 1000);
     }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
 }

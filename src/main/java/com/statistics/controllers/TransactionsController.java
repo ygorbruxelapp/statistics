@@ -2,6 +2,7 @@ package com.statistics.controllers;
 
 
 import com.statistics.domain.Transaction;
+import com.statistics.exceptions.ExpiredTransactionException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ public class TransactionsController {
 
     @RequestMapping(method = POST)
     public ResponseEntity<?> create(@RequestBody Transaction transaction) {
+        if (transaction.isExpired()) {
+            throw new ExpiredTransactionException();
+        }
         return ResponseEntity.created(URI.create("")).build();
     }
 }
