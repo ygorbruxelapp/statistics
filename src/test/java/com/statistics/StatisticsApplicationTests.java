@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureMockMvc
 public class StatisticsApplicationTests {
 
-	@Autowired
-	private TransactionsController transactionsController;
+    @Autowired
+    private TransactionsController transactionsController;
 
-	@Test
-	public void contextLoads() {
-		assertThat(transactionsController).isNotNull();
-	}
+    @Test
+    public void contextLoads() {
+        assertThat(transactionsController).isNotNull();
+    }
 
 }
