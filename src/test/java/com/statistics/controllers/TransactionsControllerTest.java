@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.statistics.factory.TimestampFactory.getTimestampsSecondsAgo;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,7 +25,7 @@ public class TransactionsControllerTest {
         this.mockMvc.perform(
                 post("/transactions")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"amount\": 12.3,\"timestamp\": 1478192204000}"))
+                        .content("{\"amount\": 12.3,\"timestamp\": " + getTimestampsSecondsAgo(50) + "}"))
                 .andDo(print())
                 .andExpect(status().isCreated());
     }
