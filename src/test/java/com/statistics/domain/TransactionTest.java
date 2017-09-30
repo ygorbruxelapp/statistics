@@ -7,7 +7,6 @@ import static com.statistics.factory.TimestampFactory.getTimestampsSecondsAgo;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
-
 public class TransactionTest {
 
     @Test
