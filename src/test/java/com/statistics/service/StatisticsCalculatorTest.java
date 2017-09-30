@@ -52,6 +52,12 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
+    public void maxAmoountDefaultValueShouldBeZero() {
+        Statistics statistics = statisticsCalculator.calculate(Arrays.asList());
+        assertEquals(0d, statistics.getMax());
+    }
+
+    @Test
     public void setsMinAmountOfTransactions() {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
@@ -59,6 +65,12 @@ public class StatisticsCalculatorTest {
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
         assertEquals(40d, statistics.getMin());
+    }
+
+    @Test
+    public void minAmoountDefaultValueShouldBeZero() {
+        Statistics statistics = statisticsCalculator.calculate(Arrays.asList());
+        assertEquals(0d, statistics.getMax());
     }
 
     @Test

@@ -19,8 +19,16 @@ public class StatisticsCalculator {
         return new Statistics(
                 summaryStatistics.getSum(),
                 summaryStatistics.getAverage(),
-                summaryStatistics.getMax(),
-                summaryStatistics.getMin(),
+                getMaxOrZeroDefault(summaryStatistics.getMax()),
+                getMinOrZeroDefault(summaryStatistics.getMin()),
                 summaryStatistics.getCount());
+    }
+
+    private double getMaxOrZeroDefault(double max) {
+        return max == Double.NEGATIVE_INFINITY ? 0d : max;
+    }
+
+    private double getMinOrZeroDefault(double min) {
+        return min == Double.POSITIVE_INFINITY ? 0d : min;
     }
 }
