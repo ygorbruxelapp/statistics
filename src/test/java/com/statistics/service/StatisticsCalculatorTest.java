@@ -23,28 +23,18 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculateSumOfTransactions() {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(100);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-
-        Transaction smallTransaction = new Transaction();
-        smallTransaction.setAmount(10.50);
-        smallTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
+        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
-        assertEquals(110.50, statistics.getSum());
+        assertEquals(140d, statistics.getSum());
     }
 
     @Test
     public void calculateAverageOfTransactions() {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(100);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-
-        Transaction smallTransaction = new Transaction();
-        smallTransaction.setAmount(40);
-        smallTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
+        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
@@ -53,13 +43,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setsMaxAmountOfTransactions() {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(100);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-
-        Transaction smallTransaction = new Transaction();
-        smallTransaction.setAmount(40);
-        smallTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
+        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
@@ -68,13 +53,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setsMinAmountOfTransactions() {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(100);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-
-        Transaction smallTransaction = new Transaction();
-        smallTransaction.setAmount(40);
-        smallTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
+        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
@@ -83,13 +63,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setTotalNumberOfTransactions() {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(100);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-
-        Transaction smallTransaction = new Transaction();
-        smallTransaction.setAmount(40);
-        smallTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
+        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
 
@@ -101,13 +76,18 @@ public class StatisticsCalculatorTest {
         Transaction expiredTransaction = new Transaction();
         expiredTransaction.setTimestamp(getTimestampsSecondsAgo(100));
 
-        Transaction notExpiredTransaction = new Transaction();
-        notExpiredTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-        notExpiredTransaction.setAmount(22.2);
+        Transaction notExpiredTransaction = getCurrentTransactionWithAmount(22.2);
 
         Statistics statistics = statisticsCalculator.calculate(Arrays.asList(expiredTransaction, notExpiredTransaction));
 
         assertEquals(1, statistics.getCount());
         assertEquals(22.2, statistics.getSum());
+    }
+
+    private Transaction getCurrentTransactionWithAmount(double amount) {
+        Transaction bigTransaction = new Transaction();
+        bigTransaction.setAmount(amount);
+        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
+        return bigTransaction;
     }
 }
