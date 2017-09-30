@@ -12,6 +12,7 @@ public class StatisticsCalculator {
     public Statistics calculate(List<Transaction> all) {
         DoubleSummaryStatistics summaryStatistics = all
                 .stream()
+                .filter(t -> !t.isExpired())
                 .mapToDouble(Transaction::getAmount)
                 .summaryStatistics();
 
