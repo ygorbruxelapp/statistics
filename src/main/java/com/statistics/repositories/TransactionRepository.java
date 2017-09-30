@@ -8,7 +8,7 @@ import java.util.List;
 
 public class TransactionRepository {
 
-    private final List<Transaction> transactions;
+    final List<Transaction> transactions;
 
     public TransactionRepository() {
         this.transactions = Collections.synchronizedList(new ArrayList<Transaction>());
@@ -19,6 +19,10 @@ public class TransactionRepository {
     }
 
     public List<Transaction> findAll() {
-        return Collections.unmodifiableList(transactions);
+        ArrayList<Transaction> transactionsClone;
+        synchronized (this.transactions) {
+            transactionsClone = new ArrayList<>(transactions);
+        }
+        return transactionsClone;
     }
 }
