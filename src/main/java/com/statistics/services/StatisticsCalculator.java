@@ -1,4 +1,7 @@
-package com.statistics.domain;
+package com.statistics.services;
+
+import com.statistics.domain.Statistics;
+import com.statistics.domain.Transaction;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.List;

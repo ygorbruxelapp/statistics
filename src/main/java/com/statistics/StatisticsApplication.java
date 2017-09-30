@@ -1,6 +1,6 @@
 package com.statistics;
 
-import com.statistics.domain.StatisticsCalculator;
+import com.statistics.services.StatisticsCalculator;
 import com.statistics.repositories.StatisticsRepository;
 import com.statistics.repositories.TransactionRepository;
 import org.springframework.boot.SpringApplication;

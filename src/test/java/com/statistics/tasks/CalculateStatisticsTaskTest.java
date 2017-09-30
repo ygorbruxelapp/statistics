@@ -1,7 +1,7 @@
 package com.statistics.tasks;
 
 import com.statistics.domain.Statistics;
-import com.statistics.domain.StatisticsCalculator;
+import com.statistics.services.StatisticsCalculator;
 import com.statistics.domain.Transaction;
 import com.statistics.repositories.StatisticsRepository;
 import com.statistics.repositories.TransactionRepository;

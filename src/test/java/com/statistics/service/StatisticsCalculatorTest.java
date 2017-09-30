@@ -1,5 +1,8 @@
-package com.statistics.domain;
+package com.statistics.service;
 
+import com.statistics.domain.Statistics;
+import com.statistics.domain.Transaction;
+import com.statistics.services.StatisticsCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
