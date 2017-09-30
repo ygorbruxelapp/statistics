@@ -5,6 +5,7 @@ import com.statistics.domain.Transaction;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class TransactionRepository {
 
@@ -15,6 +16,7 @@ public class TransactionRepository {
     }
 
     public void create(Transaction transaction) {
+        transaction.setId(UUID.randomUUID());
         transactions.add(transaction);
     }
 
@@ -24,5 +26,9 @@ public class TransactionRepository {
             transactionsClone = new ArrayList<>(transactions);
         }
         return transactionsClone;
+    }
+
+    public void delete(Transaction transaction) {
+        transactions.remove(transaction);
     }
 }
