@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
-import static com.statistics.factory.TimestampFactory.getTimestampsSecondsAgo;
+import static com.statistics.factory.TransactionFactory.buildTransactionWithSecondsAgo;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
@@ -24,11 +24,4 @@ public class TransactionTest {
         assertTrue(transaction.isExpired(ZonedDateTime.now(ZoneOffset.UTC)));
     }
 
-    private Transaction buildTransactionWithSecondsAgo(int seconds) {
-        long timestamp = getTimestampsSecondsAgo(seconds);
-
-        Transaction transaction = new Transaction();
-        transaction.setTimestamp(timestamp);
-        return transaction;
-    }
 }

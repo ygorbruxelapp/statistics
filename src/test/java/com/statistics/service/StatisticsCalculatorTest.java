@@ -10,7 +10,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Arrays;
 
-import static com.statistics.factory.TimestampFactory.getTimestampsSecondsAgo;
+import static com.statistics.factory.TransactionFactory.getCurrentTransactionWithAmount;
 import static junit.framework.TestCase.assertEquals;
 
 
@@ -85,29 +85,9 @@ public class StatisticsCalculatorTest {
         assertEquals(2, statistics.getCount());
     }
 
-    @Test
-    public void removeOldTransactionsWhenCalculateStatistics() {
-        Transaction expiredTransaction = new Transaction();
-        expiredTransaction.setTimestamp(getTimestampsSecondsAgo(100));
-
-        Transaction notExpiredTransaction = getCurrentTransactionWithAmount(22.2);
-
-        Statistics statistics = calculate(expiredTransaction, notExpiredTransaction);
-
-        assertEquals(1, statistics.getCount());
-        assertEquals(22.2, statistics.getSum());
-    }
-
     private Statistics calculate(Transaction... transactions) {
         return statisticsCalculator.calculate(
                 Arrays.asList(transactions),
                 ZonedDateTime.now(ZoneOffset.UTC));
-    }
-
-    private Transaction getCurrentTransactionWithAmount(double amount) {
-        Transaction bigTransaction = new Transaction();
-        bigTransaction.setAmount(amount);
-        bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
-        return bigTransaction;
     }
 }
