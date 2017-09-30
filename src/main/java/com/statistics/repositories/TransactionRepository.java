@@ -17,4 +17,8 @@ public class TransactionRepository {
     public void create(Transaction transaction) {
         transactions.add(transaction);
     }
+
+    public List<Transaction> findAll() {
+        return Collections.unmodifiableList(transactions);
+    }
 }

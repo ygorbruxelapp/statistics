@@ -13,14 +13,18 @@ public class Transaction {
         timestamp = 0;
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     public boolean isExpired() {
         ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
         ZonedDateTime sixtySecondsAgo = utc.minusSeconds(60);
 
         return timestamp < (sixtySecondsAgo.toEpochSecond() * 1000);
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 }
