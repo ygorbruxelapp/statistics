@@ -7,6 +7,8 @@ public class Statistics {
     private double min;
     private long count;
 
+    public Statistics() { }
+
     public Statistics(double sum, double avg, double max, double min, long count) {
         this.sum = sum;
         this.avg = avg;
