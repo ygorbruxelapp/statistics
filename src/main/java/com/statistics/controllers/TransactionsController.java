@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -22,7 +24,7 @@ public class TransactionsController {
 
     @RequestMapping(method = POST)
     public ResponseEntity<?> create(@RequestBody Transaction transaction) {
-        if (transaction.isExpired()) {
+        if (transaction.isExpired(ZonedDateTime.now(ZoneOffset.UTC))) {
             throw new ExpiredTransactionException();
         }
 

@@ -1,6 +1,5 @@
 package com.statistics.domain;
 
-import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 
 public class Transaction {
@@ -8,8 +7,7 @@ public class Transaction {
     private double amount;
     private long timestamp;
 
-    public boolean isExpired() {
-        ZonedDateTime utc = ZonedDateTime.now(ZoneOffset.UTC);
+    public boolean isExpired(ZonedDateTime utc) {
         ZonedDateTime sixtySecondsAgo = utc.minusSeconds(60);
 
         return timestamp < (sixtySecondsAgo.toEpochSecond() * 1000);

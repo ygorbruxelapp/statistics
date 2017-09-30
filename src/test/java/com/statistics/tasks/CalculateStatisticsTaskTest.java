@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
@@ -32,7 +34,7 @@ public class CalculateStatisticsTaskTest {
         when(transactionRepository.findAll()).thenReturn(transactions);
 
         Statistics statistics = new Statistics(1, 2, 3, 4, 5);
-        when(statisticsCalculator.calculate(transactions)).thenReturn(statistics);
+        when(statisticsCalculator.calculate(transactions, ZonedDateTime.now(ZoneOffset.UTC))).thenReturn(statistics);
 
         CalculateStatisticsTask calculateStatisticsTask = new CalculateStatisticsTask(statisticsCalculator, transactionRepository, statisticsRepository);
         calculateStatisticsTask.updateStatistics();

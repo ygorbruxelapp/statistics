@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Component
@@ -30,7 +32,7 @@ public class CalculateStatisticsTask {
     @Scheduled(fixedRate = 1000)
     public void updateStatistics() {
         List<Transaction> all = transactionRepository.findAll();
-        Statistics statistics = statisticsCalculator.calculate(all);
+        Statistics statistics = statisticsCalculator.calculate(all, ZonedDateTime.now(ZoneOffset.UTC));
         statisticsRepository.set(statistics);
     }
 }

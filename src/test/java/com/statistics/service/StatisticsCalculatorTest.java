@@ -6,6 +6,8 @@ import com.statistics.services.StatisticsCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 
 import static com.statistics.factory.TimestampFactory.getTimestampsSecondsAgo;
@@ -26,7 +28,7 @@ public class StatisticsCalculatorTest {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
+        Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(140d, statistics.getSum());
     }
@@ -36,7 +38,7 @@ public class StatisticsCalculatorTest {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
+        Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(70d, statistics.getAvg());
     }
@@ -46,14 +48,14 @@ public class StatisticsCalculatorTest {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
+        Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(100d, statistics.getMax());
     }
 
     @Test
     public void maxAmoountDefaultValueShouldBeZero() {
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList());
+        Statistics statistics = calculate();
         assertEquals(0d, statistics.getMax());
     }
 
@@ -62,14 +64,14 @@ public class StatisticsCalculatorTest {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
+        Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(40d, statistics.getMin());
     }
 
     @Test
     public void minAmoountDefaultValueShouldBeZero() {
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList());
+        Statistics statistics = calculate();
         assertEquals(0d, statistics.getMax());
     }
 
@@ -78,7 +80,7 @@ public class StatisticsCalculatorTest {
         Transaction bigTransaction = getCurrentTransactionWithAmount(100);
         Transaction smallTransaction = getCurrentTransactionWithAmount(40);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(bigTransaction, smallTransaction));
+        Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(2, statistics.getCount());
     }
@@ -90,10 +92,16 @@ public class StatisticsCalculatorTest {
 
         Transaction notExpiredTransaction = getCurrentTransactionWithAmount(22.2);
 
-        Statistics statistics = statisticsCalculator.calculate(Arrays.asList(expiredTransaction, notExpiredTransaction));
+        Statistics statistics = calculate(expiredTransaction, notExpiredTransaction);
 
         assertEquals(1, statistics.getCount());
         assertEquals(22.2, statistics.getSum());
+    }
+
+    private Statistics calculate(Transaction... transactions) {
+        return statisticsCalculator.calculate(
+                Arrays.asList(transactions),
+                ZonedDateTime.now(ZoneOffset.UTC));
     }
 
     private Transaction getCurrentTransactionWithAmount(double amount) {
