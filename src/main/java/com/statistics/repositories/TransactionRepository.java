@@ -1,6 +1,7 @@
 package com.statistics.repositories;
 
 import com.statistics.domain.Transaction;
+import org.springframework.scheduling.annotation.Async;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +16,7 @@ public class TransactionRepository {
         this.transactions = Collections.synchronizedList(new ArrayList<Transaction>());
     }
 
+    @Async
     public void create(Transaction transaction) {
         transaction.setId(UUID.randomUUID());
         transactions.add(transaction);
