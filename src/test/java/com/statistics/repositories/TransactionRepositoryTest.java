@@ -16,7 +16,6 @@ public class TransactionRepositoryTest {
         transactionRepository = new TransactionRepository();
     }
 
-
     @Test
     public void addTransactions() {
         Transaction transaction = new Transaction();
@@ -34,9 +33,5 @@ public class TransactionRepositoryTest {
         transactionRepository.delete(transaction);
 
         assertEquals(0, transactionRepository.findAll().size());
-
-
     }
-
-
 }
