@@ -1,6 +1,7 @@
 package com.statistics.repositories;
 
 import com.statistics.domain.Transaction;
+import com.statistics.factory.TransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,17 +19,15 @@ public class TransactionRepositoryTest {
 
     @Test
     public void addTransactions() {
-        Transaction transaction = new Transaction();
-        transaction.setTimestamp(123);
+        Transaction transaction = TransactionFactory.getCurrentWithAmount(123);
         transactionRepository.create(transaction);
 
-        assertEquals(123L, transactionRepository.findAll().get(0).getTimestamp());
+        assertEquals(1, transactionRepository.findAll().size());
     }
 
     @Test
     public void removeTransactions() {
-        Transaction transaction = new Transaction();
-        transaction.setTimestamp(123);
+        Transaction transaction = TransactionFactory.getCurrentWithAmount(123);
         transactionRepository.create(transaction);
         transactionRepository.delete(transaction);
 
