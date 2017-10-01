@@ -2,13 +2,13 @@ package com.statistics.service;
 
 import com.statistics.domain.Statistics;
 import com.statistics.domain.Transaction;
+import com.statistics.factory.TransactionFactory;
 import com.statistics.services.StatisticsCalculator;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static com.statistics.factory.TransactionFactory.getCurrentTransactionWithAmount;
 import static junit.framework.TestCase.assertEquals;
 
 
@@ -23,8 +23,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculateSumOfTransactions() {
-        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
-        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
+        Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
+        Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
 
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 
@@ -33,8 +33,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void calculateAverageOfTransactions() {
-        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
-        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
+        Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
+        Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
 
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 
@@ -43,8 +43,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setsMaxAmountOfTransactions() {
-        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
-        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
+        Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
+        Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
 
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 
@@ -59,8 +59,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setsMinAmountOfTransactions() {
-        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
-        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
+        Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
+        Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
 
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 
@@ -75,8 +75,8 @@ public class StatisticsCalculatorTest {
 
     @Test
     public void setTotalNumberOfTransactions() {
-        Transaction bigTransaction = getCurrentTransactionWithAmount(100);
-        Transaction smallTransaction = getCurrentTransactionWithAmount(40);
+        Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
+        Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
 
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 

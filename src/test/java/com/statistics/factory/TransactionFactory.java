@@ -16,7 +16,7 @@ public class TransactionFactory {
         return transaction;
     }
 
-    public static Transaction getCurrentTransactionWithAmount(double amount) {
+    public static Transaction getCurrentWithAmount(double amount) {
         Transaction bigTransaction = new Transaction();
         bigTransaction.setAmount(amount);
         bigTransaction.setTimestamp(getTimestampsSecondsAgo(10));
