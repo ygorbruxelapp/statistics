@@ -32,6 +32,17 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
+    public void calculateSumAccuratelly() {
+        Transaction aTransaction = TransactionFactory.getCurrentWithAmount(12.3);
+        Transaction anotherTransaction = TransactionFactory.getCurrentWithAmount(12.3);
+        Transaction thirdTransaction = TransactionFactory.getCurrentWithAmount(12.3);
+
+        Statistics statistics = calculate(aTransaction, anotherTransaction, thirdTransaction);
+
+        assertEquals(36.9d, statistics.getSum());
+    }
+
+    @Test
     public void calculateAverageOfTransactions() {
         Transaction bigTransaction = TransactionFactory.getCurrentWithAmount(100);
         Transaction smallTransaction = TransactionFactory.getCurrentWithAmount(40);
@@ -39,6 +50,17 @@ public class StatisticsCalculatorTest {
         Statistics statistics = calculate(bigTransaction, smallTransaction);
 
         assertEquals(70d, statistics.getAvg());
+    }
+
+    @Test
+    public void calculateAverageAccuratelly() {
+        Transaction aTransaction = TransactionFactory.getCurrentWithAmount(20);
+        Transaction anotherTransaction = TransactionFactory.getCurrentWithAmount(40);
+        Transaction thirdTransaction = TransactionFactory.getCurrentWithAmount(40);
+
+        Statistics statistics = calculate(aTransaction, anotherTransaction, thirdTransaction);
+
+        assertEquals(33.33d, statistics.getAvg());
     }
 
     @Test
