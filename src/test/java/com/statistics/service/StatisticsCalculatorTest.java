@@ -74,7 +74,7 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
-    public void maxAmoountDefaultValueShouldBeZero() {
+    public void maxAmountDefaultValueShouldBeZero() {
         Statistics statistics = calculate();
         assertEquals(0d, statistics.getMax());
     }
@@ -90,7 +90,7 @@ public class StatisticsCalculatorTest {
     }
 
     @Test
-    public void minAmoountDefaultValueShouldBeZero() {
+    public void minAmountDefaultValueShouldBeZero() {
         Statistics statistics = calculate();
         assertEquals(0d, statistics.getMax());
     }
