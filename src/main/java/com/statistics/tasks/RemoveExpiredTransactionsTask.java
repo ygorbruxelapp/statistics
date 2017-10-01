@@ -20,7 +20,7 @@ public class RemoveExpiredTransactionsTask {
         this.transactionRepository = transactionRepository;
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 300)
     public void updateStatistics() {
         List<Transaction> all = transactionRepository.findAll();
         ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);

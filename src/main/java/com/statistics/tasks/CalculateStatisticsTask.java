@@ -27,7 +27,7 @@ public class CalculateStatisticsTask {
         this.statisticsRepository = statisticsRepository;
     }
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 300)
     public void updateStatistics() {
         List<Transaction> all = transactionRepository.findAll();
         Statistics statistics = statisticsCalculator.calculate(all);
